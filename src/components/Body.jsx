@@ -11,12 +11,12 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
+  const feedData = useSelector((store) => store.feed);
   const fetchUser = async () => {
     try {
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
-      console.log(res.data);
       dispatch(addUser(res.data));
     } catch (err) {
       if (err.status === 401) {
@@ -30,7 +30,6 @@ const Body = () => {
       fetchUser();
     }
   }, []);
-
   return (
     <>
       <NavBar />

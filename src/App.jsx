@@ -6,6 +6,7 @@ import Feed from "./components/Feed";
 import Body from "./components/Body";
 import appStore from "./utils/appStore";
 import { Provider } from "react-redux";
+import Exfeed from "./components/Exfeed";
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Feed />} />
+
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
