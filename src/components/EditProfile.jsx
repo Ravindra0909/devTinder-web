@@ -24,7 +24,7 @@ const EditProfile = ({ user }) => {
       setError("");
       const { firstName, lastName, photoUrl, age, gender, about, skills } =
         profile;
-      console.log(profile);
+
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
         { firstName, lastName, photoUrl, gender, age, about, skills },
