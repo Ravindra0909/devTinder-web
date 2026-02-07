@@ -6,7 +6,7 @@ const AuthContainer = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="min-h-screen flex items-center justify-center">
       {isLogin ? (
         <Login onSwitchToSignUp={() => setIsLogin(false)} />
       ) : (

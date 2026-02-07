@@ -1,39 +1,50 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
-const SignUpPage = ({ onSignUpSuccess, onSwitchToLogin }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+const SignUpPage = ({ onSwitchToLogin }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (error) setError(null);
-  };
+  const handleSignUp = async (e) => {
+    try {
+      e.preventDefault();
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, password } = formData;
+      if (!firstName || !lastName || !emailId || !password) {
+        setError("Registration data incomplete.");
+        return;
+      }
 
-    if (!firstName || !lastName || !email || !password) {
-      setError("Registration data incomplete.");
-      return;
+      if (password.length < 8) {
+        setError("Password fails security audit (min 8).");
+        return;
+      }
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        { firstName, lastName, emailId, password },
+        {
+          withCredentials: true,
+        },
+      );
+      dispatch(addUser(res.data.data));
+      return navigate("/profile");
+    } catch (err) {
+      setError(err?.response?.data || "Something Went Wrong");
     }
-
-    if (password.length < 8) {
-      setError("Password fails security audit (min 8).");
-      return;
-    }
-
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      if (onSignUpSuccess) onSignUpSuccess();
-    }, 1500);
   };
 
   return (
@@ -62,8 +73,8 @@ const SignUpPage = ({ onSignUpSuccess, onSwitchToLogin }) => {
               <input
                 name="firstName"
                 type="text"
-                value={formData.firstName}
-                onChange={handleChange}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Ada"
                 className="input input-lg w-full bg-[#0A0B10]/50 border-white/5 focus:border-[#FF416C]/50 focus:outline-none placeholder:text-gray-900 transition-all rounded-[1.5rem] text-sm font-medium"
               />
@@ -79,8 +90,8 @@ const SignUpPage = ({ onSignUpSuccess, onSwitchToLogin }) => {
               <input
                 name="lastName"
                 type="text"
-                value={formData.lastName}
-                onChange={handleChange}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 placeholder="Lovelace"
                 className="input input-lg w-full bg-[#0A0B10]/50 border-white/5 focus:border-[#FF416C]/50 focus:outline-none placeholder:text-gray-900 transition-all rounded-[1.5rem] text-sm font-medium"
               />
@@ -97,8 +108,8 @@ const SignUpPage = ({ onSignUpSuccess, onSwitchToLogin }) => {
             <input
               name="email"
               type="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
               placeholder="ada.lovelace@first.dev"
               className="input input-lg w-full bg-[#0A0B10]/50 border-white/5 focus:border-[#FF416C]/50 focus:outline-none placeholder:text-gray-900 transition-all rounded-[1.5rem] text-sm font-medium"
             />
@@ -108,14 +119,14 @@ const SignUpPage = ({ onSignUpSuccess, onSwitchToLogin }) => {
           <div className="form-control w-full group">
             <label className="label px-2 py-2">
               <span className="label-text text-gray-500 text-[10px] font-black uppercase tracking-widest group-focus-within:text-[#FF416C] transition-colors">
-                Create Token
+                Create Password
               </span>
             </label>
             <input
               name="password"
               type="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Minimum 8 characters"
               className="input input-lg w-full bg-[#0A0B10]/50 border-white/5 focus:border-[#FF416C]/50 focus:outline-none placeholder:text-gray-900 transition-all rounded-[1.5rem] text-sm font-medium"
             />

@@ -5,7 +5,7 @@ import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
-const Login = () => {
+const Login = ({ onSwitchToSignUp }) => {
   const [emailId, setEmailId] = useState("kohli@gmail.com");
   const [password, setPassword] = useState("Kohli@123");
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="card bg-[#161B22] w-full max-w-[400px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] border border-[#FF416C]/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 mx-auto rounded-[3.5rem] overflow-hidden my-10">
+    <div className="card bg-[#161B22] w-full max-w-[460px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] border border-[#FF416C]/10 animate-in fade-in slide-in-from-bottom-12 duration-1000 mx-auto rounded-[3.5rem] overflow-hidden my-8">
       <div className="card-body p-10 md:p-14 gap-10">
         {/* Header */}
         <div className="space-y-4 text-center">
