@@ -84,8 +84,8 @@ const UserCard = ({ user, onActionComplete, isPreview = false }) => {
             {gender && (
               <span
                 className="text-[10px] font-black uppercase tracking-[0.2em]
-                text-[#7C8CFD] bg-[#7C8CFD]/20 px-3 py-1 rounded-full
-                border border-[#7C8CFD]/30 backdrop-blur-md"
+                text-[#FF416C] bg-[#FF416C]/20 px-3 py-1 rounded-full
+                border border-[#FF416C]/30 backdrop-blur-md"
               >
                 {gender}
               </span>
@@ -137,10 +137,7 @@ const UserCard = ({ user, onActionComplete, isPreview = false }) => {
             <button
               disabled={isAnimating}
               onClick={() => handleAction("right", "interested", _id)}
-              className="flex-[2] h-14 bg-[#7C8CFD] text-white font-black
-              uppercase tracking-[0.2em] text-[10px] rounded-2xl
-              hover:bg-[#6B7AE8] shadow-2xl shadow-[#7C8CFD]/30
-              transition-all active:scale-95 disabled:opacity-50"
+              className="flex-[2] btn h-16 bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] border-none text-white font-black uppercase tracking-[0.3em] text-[10px] shadow-[0_15px_30px_-10px_rgba(255,65,108,0.4)] hover:shadow-[0_15px_30px_-10px_rgba(255,65,108,0.6)] transition-all active:scale-95 rounded-2xl disabled:opacity-50 flex items-center justify-center gap-3"
             >
               Connect
             </button>

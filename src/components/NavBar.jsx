@@ -33,9 +33,31 @@ const NavBar = () => {
       <div className="flex-1">
         <Link
           to="/"
-          className="text-lg md:text-xl font-black tracking-tight uppercase italic flex items-center gap-2 text-gray-100 hover:text-white transition-colors"
+          className="group flex items-center gap-3 cursor-pointer select-none"
         >
-          <span className="text-[#7C8CFD]">#</span> DEV TINDER
+          <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#FF416C] to-[#1A1C23] flex items-center justify-center shadow-[0_0_20px_rgba(255,65,108,0.3)] group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(255,65,108,0.5)] transition-all duration-300">
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth="2.5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
+              />
+            </svg>
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">
+              Dev<span className="text-[#FF416C]">Tinder</span>
+            </span>
+            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#FF416C]/60">
+              Commit & Network
+            </span>
+          </div>
         </Link>
       </div>
 
@@ -53,7 +75,7 @@ const NavBar = () => {
               role="button"
               className="avatar cursor-pointer relative"
             >
-              <div className="w-9 md:w-10 rounded-full border-2 border-transparent hover:border-[#7C8CFD] transition-all">
+              <div className="w-9 md:w-10 rounded-full border-2 border-transparent hover:border-[#FF416C] transition-all">
                 <img src={user.photoUrl} alt="profile" />
               </div>
 

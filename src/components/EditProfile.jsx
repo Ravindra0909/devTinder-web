@@ -66,7 +66,7 @@ const EditProfile = ({ user }) => {
 
   const SectionHeader = ({ title, icon }) => (
     <div className="flex items-center gap-2 mb-6 mt-2">
-      <div className="p-2 bg-[#7C8CFD]/10 rounded-lg text-[#7C8CFD]">
+      <div className="p-2 bg-[#FF416C]/10 rounded-lg text-[#FF416C]">
         {icon}
       </div>
       <h3 className="text-sm font-black uppercase tracking-[0.2em] text-white/90">
@@ -113,7 +113,7 @@ const EditProfile = ({ user }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="group space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                   First Name
                 </label>
                 <div className="relative">
@@ -121,12 +121,12 @@ const EditProfile = ({ user }) => {
                     name="firstName"
                     value={profile.firstName}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
+                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
                   />
                 </div>
               </div>
               <div className="group space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                   Last Name
                 </label>
                 <div className="relative">
@@ -134,7 +134,7 @@ const EditProfile = ({ user }) => {
                     name="lastName"
                     value={profile.lastName}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
+                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
                   />
                 </div>
               </div>
@@ -162,7 +162,7 @@ const EditProfile = ({ user }) => {
 
             <div className="space-y-6 mb-8">
               <div className="group space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                   Profile Image Source
                 </label>
                 <input
@@ -170,13 +170,13 @@ const EditProfile = ({ user }) => {
                   value={profile.photoUrl}
                   onChange={handleChange}
                   placeholder="https://images.unsplash.com/..."
-                  className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
+                  className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                     Current Age
                   </label>
                   <input
@@ -184,18 +184,18 @@ const EditProfile = ({ user }) => {
                     value={profile.age}
                     onChange={handleChange}
                     type="number"
-                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
+                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)]"
                   />
                 </div>
                 <div className="group space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                     Gender Identity
                   </label>
                   <select
                     name="gender"
                     value={profile.gender}
                     onChange={handleChange}
-                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)] appearance-none cursor-pointer"
+                    className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-2xl px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)] appearance-none cursor-pointer"
                   >
                     <option value="male" className="bg-[#1A1C23]">
                       Male
@@ -232,7 +232,7 @@ const EditProfile = ({ user }) => {
             />
 
             <div className="group space-y-2 mb-6">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#FF416C] transition-colors">
                 About your journey
               </label>
               <textarea
@@ -240,12 +240,12 @@ const EditProfile = ({ user }) => {
                 value={profile.about}
                 onChange={handleChange}
                 rows={3}
-                className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#7C8CFD]/50 focus:outline-none rounded-[1.5rem] px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)] resize-none leading-relaxed"
+                className="w-full bg-black/20 border border-white/5 group-focus-within:border-[#FF416C]/50 focus:outline-none rounded-[1.5rem] px-5 py-4 text-white font-medium transition-all group-focus-within:shadow-[0_0_20px_rgba(124,140,253,0.1)] resize-none leading-relaxed"
               />
             </div>
 
             <div className="group space-y-4 mb-10">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[#7C8CFD] transition-colors">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 group-focus-within:text-[FF416C] transition-colors">
                 Professional Skills
               </label>
               <form onSubmit={handleAddSkill} className="flex gap-2">
