@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = ({ onSwitchToSignUp }) => {
-  const [emailId, setEmailId] = useState("kohli@gmail.com");
-  const [password, setPassword] = useState("Kohli@123");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
