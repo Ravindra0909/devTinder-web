@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
@@ -170,25 +171,27 @@ const Connections = () => {
                   </div>
 
                   {/* Creative CTA */}
-                  <button className="relative w-full overflow-hidden group/btn px-8 py-5 bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-[1.8rem] transition-all duration-500 hover:text-white hover:border-transparent active:scale-95 shadow-lg">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#7C8CFD] to-[#6B7AE8] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
-                    <span className="relative z-10 flex items-center justify-center gap-3">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2.5"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        />
-                      </svg>
-                      Chat
-                    </span>
-                  </button>
+                  <Link to={"/chat/" + conn._id}>
+                    <button className="relative w-full overflow-hidden group/btn px-8 py-5 bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-[1.8rem] transition-all duration-500 hover:text-white hover:border-transparent active:scale-95 shadow-lg">
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#7C8CFD] to-[#6B7AE8] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
+                      <span className="relative z-10 flex items-center justify-center gap-3">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2.5"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                          />
+                        </svg>
+                        Chat
+                      </span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
