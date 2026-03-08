@@ -171,7 +171,14 @@ const Connections = () => {
                   </div>
 
                   {/* Creative CTA */}
-                  <Link to={"/chat/" + conn._id}>
+                  <Link
+                    to={"/chat/" + conn._id}
+                    state={{
+                      onFirstName: conn.firstName,
+                      onLastName: conn.lastName,
+                      onPhotoUrl: conn.photoUrl,
+                    }}
+                  >
                     <button className="relative w-full overflow-hidden group/btn px-8 py-5 bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-[1.8rem] transition-all duration-500 hover:text-white hover:border-transparent active:scale-95 shadow-lg">
                       <div className="absolute inset-0 bg-gradient-to-r from-[#7C8CFD] to-[#6B7AE8] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
                       <span className="relative z-10 flex items-center justify-center gap-3">

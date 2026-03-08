@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Send, User, Info, MoreHorizontal, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { createSocketConnection } from "../utils/socket";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -10,12 +10,15 @@ import { BASE_URL } from "../utils/constants";
 const Chat = () => {
   const { targetUserId } = useParams();
   const socketRef = useRef(null);
-
+  const location = useLocation();
+  const { onFirstName, onLastName, onPhotoUrl } = location.state || {};
+  console.log(onFirstName, onLastName, onPhotoUrl);
   const user = useSelector((store) => store.user);
   const userId = user?._id;
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -30,7 +33,7 @@ const Chat = () => {
     const chatMessages = chat?.data?.messages.map((msg) => {
       return {
         text: msg.text,
-        senderId: msg.senderId,
+        senderId: msg.senderId._id,
         timestamp: new Date(msg.createdAt).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -54,6 +57,11 @@ const Chat = () => {
       userId,
       targetUserId,
     });
+    socketRef.current.emit("userOnline", userId);
+
+    socketRef.current.on("onlineUsers", (users) => {
+      setOnlineUsers(users);
+    });
 
     socketRef.current.on("messageRecieved", ({ firstName, text, senderId }) => {
       console.log(firstName + " " + text);
@@ -70,12 +78,14 @@ const Chat = () => {
       ]);
     });
 
-    scrollToBottom();
-
     return () => {
       socketRef.current.disconnect();
     };
   }, [userId, targetUserId]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -99,6 +109,7 @@ const Chat = () => {
     // setMessages([...messages, newMsg]);
     setNewMessage("");
   };
+  const isOnline = onlineUsers.includes(targetUserId);
 
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] w-full max-w-5xl mx-auto bg-[#0A0A0B] rounded-[2.5rem] shadow-[0_0_80px_rgba(0,0,0,0.5)] overflow-hidden border border-white/10 relative">
@@ -111,7 +122,15 @@ const Chat = () => {
         <div className="flex items-center gap-5">
           <div className="relative">
             <div className="w-14 h-14 rounded-2xl bg-[#1A1A1E] flex items-center justify-center border border-white/10 shadow-xl">
-              <User className="w-7 h-7 text-indigo-400" />
+              {onPhotoUrl ? (
+                <img
+                  src={onPhotoUrl}
+                  alt={onFirstName}
+                  className="w-14 h-14 rounded-2xl object-cover"
+                />
+              ) : (
+                <User className="w-7 h-7 text-indigo-400" />
+              )}
             </div>
 
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#0A0A0B] rounded-full flex items-center justify-center border-2 border-[#111113]">
@@ -120,13 +139,21 @@ const Chat = () => {
           </div>
 
           <div>
-            <h1 className="text-white font-bold text-xl">Jane Doe</h1>
+            <h1 className="text-white font-bold text-xl">
+              {onFirstName} {onLastName}
+            </h1>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400/80">
                 Developer Node
               </span>
               <div className="w-1 h-1 rounded-full bg-white/10"></div>
-              <span className="text-[10px] text-gray-500">Active now</span>
+              <span
+                className={`text-[12px] font-large ${
+                  isOnline ? "text-green-400" : "text-gray-500"
+                }`}
+              >
+                {isOnline ? "online" : "offline"}
+              </span>
             </div>
           </div>
         </div>
